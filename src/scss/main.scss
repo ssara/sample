@@ -1,0 +1,220 @@
+// Import Bootstrap Compass integration
+@import "bootstrap-compass";
+
+// Import custom Bootstrap variables
+@import "bootstrap-variables";
+
+// Import Bootstrap for Sass
+@import "bootstrap";
+
+
+// configuration variables
+//$icons-layout:smart;
+$icons-sprite-dimensions:true;
+
+// required for basic spriting
+@import "compass/utilities/sprites";
+@import "icons/*.png";
+@include all-icons-sprites;
+
+// generate css style based on status
+@mixin status-style($color1,$color2,$icon) {
+  &.panel {
+    border: 1px solid $color1;
+    color: $color1;
+    &.open{
+     background:$color2;
+    }
+  }
+  .accordion-icon{
+    background:$color1;
+  }
+  .accordion-heading{
+    color:$color1;
+  }
+  .icons-panel-status{
+    @include icons-sprite($icon);
+  }
+  .progress-bar-status {
+    background-color:$color1;
+  }
+  .col-md-2{
+    background-color:$color1;
+  }
+}
+
+
+body {
+	  font-size: 14px;
+}
+.container.app {
+  min-width:980px;
+}
+nav{
+   ul{
+    padding: 0 50px;
+    list-style: none;
+    display: table;
+    background-color: #f9f9f9; 
+  }
+  li {
+    vertical-align: middle;
+    display: table-cell;
+    width: 12.5%;
+    height: 115px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+    text-align: center;
+  }
+}
+
+
+
+.icon {
+  display:block;
+  margin: auto;
+}
+
+.panel-group{
+  .panel{
+    border-radius: 0px;
+  }
+} 
+.panel-default{
+  >.panel-heading{
+    background:none;
+    
+  }
+  >.panel-heading+.panel-collapse>.panel-body {
+   border:none;
+  }
+}
+
+
+.panel {
+  @include transition(background .3s ease-out );
+
+  &.open .progress{
+
+    opacity:0;
+  }
+  .panel-heading {
+    padding: 0px;
+  }
+  a:focus,  a:hover {
+    text-decoration:none;
+  }
+  .progress {
+    height: 10px;
+    margin: auto;
+    border-radius: 0px;
+    width: 70%;
+    @include transition(opacity .3s ease-out );
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow:none;
+    &.largeView{
+      opacity: 1;
+      border: none;
+      height: 20px;
+      margin-top: 12px;
+      width: 85%;
+      background:rgba(0,0,0,.4);
+      .progress-bar-success{
+        background:rgba(255,255,255,.7);
+        box-shadow:none;
+      }
+    }
+  }
+
+  .accordion-icon {
+    display:inline-block;
+    padding: 10px 15px; 
+    width: 53px;
+    text-align: center; 
+    margin-bottom: -1px;
+  }
+  .accordion-heading {
+    display: block;
+    margin-top: -30px;
+    margin-left: 53px;
+    height: 31px;
+    margin-right: 30px;
+
+    span {
+      display:inline-block;
+      width:12%;
+     font-size: 12px;
+      text-align: center;
+      text-transform: capitalize;
+    }
+  }
+}
+
+
+.complete  { 
+  @include  status-style(#297c3a,#E2F4E3,panel-complete);
+}
+
+.running  {
+  @include  status-style(#50A5CF,#ade5ff,panel-firewall);
+}
+
+.pending  {
+  @include  status-style(#999,#f2f2f2,panel-disabled);
+}
+.rejected  {
+  @include  status-style(#D16E53,#fccbbf,panel-firewall);
+}
+
+.col-md-2 {
+  color:rgba(0,0,0,.7);
+  height:150px;
+  margin:10px; 
+  padding:0px;
+  text-align: center;
+  &:first-child {
+    margin-left:5%;
+  }
+  h4{
+    border: 1px solid rgba(0,0,0,.6);
+    border-width: 1px 0;
+    padding: 10px 0;
+    margin: 0;
+    margin-bottom:10px;
+  }
+  h3 {
+   margin:0px;
+  }
+}
+.col-md-2.bg-none {
+  background-color:transparent;
+}
+.btn-action {
+  color:#fff;
+  background-color:rgba(0,0,0,.7);
+  width:100%;
+  border-radius:0px;
+  border:none;
+  margin-top:20px;
+  &:hover {
+    background-color:rgba(0,0,0,.7);
+    color:rgba(255,255,255,.7); 
+  }
+}
+
+.pie {
+  float: left;
+  margin-left: 10px;
+}
+.metrics {
+  .col-md-6 {
+    height:70px;
+  }
+  p{
+    font-size:11px;
+  }
+  span {
+    padding: 8px;
+  }
+}

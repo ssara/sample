@@ -1,0 +1,111 @@
+
+<script type="text/ng-template" id="template/accordion/accordion-group.html">
+   <div class="panel panel-default" ng-class="{'open': isOpen}" >
+      <div class="panel-heading">
+        <h4 class="panel-title" ng-click="toggleOpen()">
+          <a href class="accordion-toggle"  accordion-transclude="heading"></a>
+        </h4>
+      </div>
+      <div class="panel-collapse" collapse="!isOpen">
+       <div class="panel-body" ng-transclude></div>
+      </div>
+    </div>
+</script>
+
+<div ng-controller="Accordion">
+  <accordion close-others="oneAtATime"  >
+    <accordion-group  ng-repeat="group in groups" class="{{group.status}}">
+          <accordion-heading>
+            <div class="accordion-icon"><span class="glyphicon icons-panel-status" aria-hidden="true"></span></div>
+            <div class="accordion-heading" ng-class="{'text-muted': isDisabled}">
+              <span>{{group.build_no}}</span> 
+              <span>{{group.owner}}</span> 
+              <span>{{group.time_started | date:'dd MMM yyyy , h:mma' }}</span> 
+              <span>{{group.status}}</span> 
+              <span>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-status" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{group.progress_status}}%"></div>
+                </div>
+              </span>  
+              <span>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{getBuildStatus(group.build)}}"></div>
+                </div>
+              </span> 
+              <span>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{(group.unit_test.covered/group.unit_test.total)*100}}%"></div>
+                </div>
+              </span>  
+              <span>
+                <div class="progress">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{(group.functional_test.covered/group.functional_test.total)*100}}%"></div>
+                </div>
+              </span> 
+            </div>
+        </accordion-heading>
+        <div class="row">
+          <div class="col-md-2 metrics">
+            <h5>Metrics</h5>
+              <div class="col-md-6"><span class="icon icons-panel-arrow-up">95</span></div>
+              <div class="col-md-6"><span class="icon icons-panel-arrow-down">95 </span></div>
+              <div class="col-md-6"><span class="icon icons-panel-arrow-right">95 </span></div>
+              <div class="col-md-6"><span class="icon icons-panel-arrow-right">95 </span></div>
+          </div>
+          <div class="col-md-2">
+            <h5>Build</h5>
+            <div class="row">
+              <div class="col-md-6" ng-show="group.build.debug==='done'">
+               <span class="icon icons-debug"></span>
+              </div>
+              <div class="col-md-6" ng-show="group.build.release==='done'">
+                <span class="icon icons-release"></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6" ng-show="group.build.debug==='done'">
+                Debug
+              </div>
+               <div class="col-md-6" ng-show="group.build.release==='done'">
+                Release
+              </div>
+            </div>
+            {{group.build.time | date:'dd MMM yyyy' }} <br>
+            {{group.build.time | date:'h:mma' }}
+          </div>
+          <div class="col-md-2">
+            <h5>Unit Test</h5>
+            <pie class="pie" data="{{group.unit_test}}">
+              Check out the contents, {{name}}!
+            </pie>
+            <h2>
+              {{(group.unit_test.covered/group.unit_test.total)*100 | number:0}}%
+            </h2>
+             tests passed
+              <div class="progress largeView">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{(group.unit_test.covered/group.unit_test.total)*100}}%"></div>
+                </div>
+          </div>
+          <div class="col-md-2">
+            <h5>Functional</h5>
+             <pie class="pie" data="{{group.functional_test}}">
+              Check out the contents, {{name}}!
+            </pie>
+            <h2>
+              {{(group.functional_test.covered/group.functional_test.total)*100 | number:0}}%
+            </h2>
+             tests passed
+              <div class="progress largeView">
+                  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: {{(group.functional_test.covered/group.functional_test.total)*100}}%"></div>
+                </div>
+          </div>
+          <div class="col-md-2 bg-none">
+            <h4>Result</h4>
+            change Accepted
+            <h3>Auto-Merged</h3>
+            <a class="btn btn-default btn-action" href="#" role="button">Action</a>
+          </div>
+        </div>
+    </accordion-group>
+  </accordion>
+</div>

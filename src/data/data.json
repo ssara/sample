@@ -1,0 +1,88 @@
+{
+  "data" : [
+  {
+    "build_no": "45252",
+    "owner": "saravanan",
+    "time_started": "2015-04-02T16:38:29.404Z",
+    "status": "pending",
+    "progress_status": 0,
+    "msg": "msg",
+    "unit_test": {
+      "total": 300,
+      "covered": 40
+    },
+    "functional_test": {
+      "total": 260,
+      "covered": 130
+    },
+    "build": {
+      "debug": "done",
+      "release": "done",
+      "time": "2015-04-02T16:38:29.404Z"
+    }
+  },
+  {
+    "build_no": "45252",
+    "owner": "saravanan",
+    "time_started": "2015-04-02T16:38:29.404Z",
+    "status": "complete",
+    "progress_status": 100,
+    "msg": "msg",
+    "unit_test": {
+      "total": 40,
+      "covered": 20
+    },
+    "functional_test": {
+      "total": 58,
+      "covered": 30
+    },
+    "build": {
+      "debug": "done",
+      "release": "done",
+      "time": "2015-04-02T16:38:29.404Z"
+    }
+  },
+  {
+    "build_no": "45252",
+    "owner": "saravanan",
+    "time_started": "2015-04-02T16:38:29.404Z",
+    "status": "running",
+    "progress_status": 60,
+    "msg": "msg",
+    "unit_test": {
+      "total": 400,
+      "covered": 160
+    },
+    "functional_test": {
+      "total": 350,
+      "covered": 50
+    },
+    "build": {
+      "debug": "",
+      "release": "done",
+      "time": "2015-04-02T16:38:29.404Z"
+    }
+  },
+  {
+    "build_no": "45252",
+    "owner": "saravanan",
+    "time_started": "2015-04-02T16:38:29.404Z",
+    "status": "rejected",
+    "progress_status": 100,
+    "msg": "msg",
+    "unit_test": {
+      "total": 40,
+      "covered": 23
+    },
+    "functional_test": {
+      "total": 15,
+      "covered": 7
+    },
+    "build": {
+      "debug": "done",
+      "release": "",
+      "time": "2015-04-02T16:38:29.404Z"
+    }
+  }
+]
+}
