@@ -32,20 +32,15 @@ angular.module('sampleApp').directive('pie', function() {
 });
 
 angular.module('sampleApp').controller('Accordion',['$scope','$http', function($scope,$http) {
-  $scope.oneAtATime = true;
 
-$http.get('/data/data.json').
-  success(function(data, status) {
-    $scope.groups = data.data;
-  }).
-  error(function(data) {
-  });
+
+  $http.get('/data/data.json').
+    success(function(data, status) {
+      $scope.groups = data.data;
+    }).
+    error(function(data) {
+    });
   
-  var newCanvas = $('<canvas/>');
-  newCanvas[0].height = 200;
-  newCanvas[0].width = 100;
-
-  var ctx = newCanvas[0].getContext("2d");
 
   $scope.getBuildStatus = function(build) {
     if(build.debug ==='done' && build.release ==='done'){
